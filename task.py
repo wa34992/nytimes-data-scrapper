@@ -9,10 +9,10 @@ if __name__ == "__main__":
     if env == 'PROD':
         work_items = WorkItems()
         work_items.get_input_work_item()
-        work_item = work_items.get_work_item_variables()
-        search_phrase = work_item["variables"]["search_phrase"]
-        news_category = work_item["variables"]["news_category"]
-        num_months = work_item["variables"]["num_months"]
+        work_item = work_items.get_work_item_payload()
+        search_phrase = work_item["search_phrase"]
+        news_category = work_item.get("news_category", [])
+        num_months = work_item.get("num_months", 1)
     else:
         search_phrase = "python"
         news_category = []
