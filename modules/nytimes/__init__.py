@@ -1,8 +1,8 @@
 import logging
 
 # Generating logs
-logging.basicConfig(
-    filename='app.log', encoding='utf-8', level=logging.INFO, filemode='w',
-    format='%(process)d-%(levelname)s-%(message)s')
-
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+handler = logging.FileHandler('app.log', 'w', 'utf-8')
+handler.setFormatter(logging.Formatter('%(process)d-%(levelname)s-%(message)s'))
+logger.addHandler(handler)
