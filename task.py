@@ -7,14 +7,19 @@ if __name__ == "__main__":
     extractor = DataExtractor()
     env = os.getenv('ENV')
     if env == 'PROD':
+        print("env", env)
         work_items = WorkItems()
+        print("work_items", work_items)
         work_items.get_input_work_item()
+        print("work_items", work_items)
         work_item = work_items.get_work_item_payload()
+        print("work_item", work_item)
         search_phrase = work_item["search_phrase"]
+        print("search_phrase", search_phrase)
         news_category = work_item.get("news_category", [])
         num_months = work_item.get("num_months", 1)
     else:
         search_phrase = "python"
         news_category = []
-        num_months = 3
+        num_months = 2
     extractor.run(search_phrase, news_category, num_months)
