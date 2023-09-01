@@ -6,6 +6,7 @@ from modules.nytimes.data_extractor import DataExtractor
 if __name__ == "__main__":
     extractor = DataExtractor()
     env = os.getenv('ENV')
+    print("env----", env)
     if env == 'PROD':
         print("env", env)
         work_items = WorkItems()
@@ -22,4 +23,5 @@ if __name__ == "__main__":
         search_phrase = "python"
         news_category = []
         num_months = 2
+        print("search_phrase----", search_phrase)
     extractor.run(search_phrase, news_category, num_months)
