@@ -23,6 +23,14 @@ class NyTimesBrowser:
         self.browser.wait_until_element_is_visible('//button[contains(text(), "Continue")]')
         self.browser.click_button('//button[contains(text(), "Continue")]')
 
+    def accept_cookies(self):
+        try:
+            self.browser.wait_until_element_is_visible('//button[@data-testid="GDPR-accept"]')
+            self.browser.click_button('//button[@data-testid="GDPR-accept"]')
+        except Exception as e:
+            error = traceback.format_exc()
+            logger.info(f"No cookies modal appear")
+
     # This method enter the provided keyword into search input
     def enter_search_phrase(self, search_phrase):
         self.browser.click_button('//button[@aria-controls="search-input"]')

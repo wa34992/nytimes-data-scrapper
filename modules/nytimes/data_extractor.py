@@ -33,6 +33,7 @@ class DataExtractor:
         logger.info("Handling terms modal...")
         self.browser.close_terms_modal()
         logger.info(f"Entering {search_phrase=}...")
+        self.browser.accept_cookies()
         self.browser.enter_search_phrase(search_phrase)
         logger.info(f"Selecting sorting to newest...")
         self.browser.change_sorting()
@@ -46,12 +47,12 @@ class DataExtractor:
         self.get_article_data(self.article_with_in_range, search_phrase)
         logger.info(f"Data scrapped successfully...")
 
-    # This method creates output and picture directory
+    # This method creates output directory
     def create_directories(self):
         dir_exist = self.fs.Path('output').is_dir()
         if dir_exist:
             self.file_sys.remove_directory('output', True)
-        self.fs.Path('output/pictures').mkdir(parents=True, exist_ok=True)
+        self.fs.Path('output').mkdir(parents=True, exist_ok=True)
 
     # This method extracts the articles from web page and filter out articles that are within the
     # provided date range. If provided range is 1 then the scraped articles will be from current month,
@@ -104,7 +105,7 @@ class DataExtractor:
                 "Money in Description": money_in_description
             })
             try:
-                self.http_req.download(picture_url, f"output/pictures/{picture_filename}")
+                self.http_req.download(picture_url, f"output/{picture_filename}")
             except Exception as e:
                 error = traceback.format_exc()
                 logger.info(f"Image not found {error=}")
