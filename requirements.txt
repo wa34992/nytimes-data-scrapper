@@ -1,0 +1,1 @@
+rpaframework==26.1.0
