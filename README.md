@@ -25,7 +25,7 @@ To set up and run the bot locally, follow these steps:
 4. Run the bot using the following command: `python task.py`
 
 
-Alternatively, you can also use [RCC command line tool](https://robocorp.com/docs/rcc/installation) or Robocrop code VS code extension.
+Alternatively, you can also use [RCC command line tool](https://robocorp.com/docs/rcc/installation) or Robocorp code VS code extension.
 
 ## Deployment on [Robocorp Control Room](https://cloud.robocorp.com/)
 
