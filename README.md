@@ -25,7 +25,7 @@ To set up and run the bot locally, follow these steps:
 4. Run the bot using the following command: `python task.py`
 
 
-Alternatively, you can also use [RCC command line tool](https://robocorp.com/docs/rcc/installation) or Robocrop code VS code extension.
+Alternatively, you can also use [RCC command line tool](https://robocorp.com/docs/rcc/installation) or Robocorp code VS code extension.
 
 ## Deployment on [Robocorp Control Room](https://cloud.robocorp.com/)
 
@@ -34,7 +34,7 @@ To deploy the bot on the Robocorp Control Room, follow these steps:
 1. Go to the Robocorp Control Room and create a robot.
 2. Add the link of this repository to the public GIT.
 3. Create a process and select the created robot.
-4. Run the process by providing the parameters mentioned above.
+4. Run the process by providing the parameters mentioned above. The pramaters will be fetched from work items.
 5. Data and pictures will be scraped into the `output` directory.
 
 ## File Structure
