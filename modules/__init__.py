@@ -1,1 +1,1 @@
-from modules.utils import FormatDate, ExcelGenerator
+from modules.utils import ExcelGenerator

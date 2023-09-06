@@ -3,7 +3,7 @@
 This repository contains a Python-based data scraping bot for the [NYTimes website](https://www.nytimes.com/). The code is well-structured, optimized, and memory-efficient, making it suitable for integration into other applications. It accepts the following parameters:
 
 - `search_phrase` (string, required)
-- `news_category` (list, optional, default value is [])
+- `news_category` (list, optional, default value is []) example: ["Arts"]
 - `num_months` (int, optional, default value is 2)
 
 ## Features
@@ -39,15 +39,15 @@ To deploy the bot on the Robocorp Control Room, follow these steps:
 
 ## File Structure
 
-| File/Folder                                      | Description                                                                                                                                                                                                                                                                           |
-| ------------------------------------------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `task.py`                                        | Initializes the bot and starts the scraping process.                                                                                                                                                                                                                                  |
-| `conda.yaml`                                    | Contains configuration settings to set up the environment and define RPA Framework dependencies.                                                                                                                                                                                      |
-| `robot.yaml`                                    | Includes configuration settings for Robocorp to execute `conda.yaml` and run `task.py`.                                                                                                                                                                                               |
-| `Modules/nytimes/browser.py`                   | Contains all the methods related to browser functionality.                                                                                                                                                                                                                            |
-| `Modules/nytimes/data_extractor.py`           | Provides a `run` method that calls other methods with logic for searching, scraping, and creating the Excel file for news data.                                                                                                                                                       |
-| `Modules/utils.py`                             | Includes a `process_date` method to convert news dates and provided dates into a specific format. This is essential because the current NYTimes web app does not filter data based on the provided date range, but this bot ensures data is scraped within the specified date range. `ExcelGenerator` class will generate excel file that contains data. |
-| `Modules/nytimes/__init__.py`                | Contains code to generate logs.                                                                                                                                                                                                                                                       |
+| File/Folder                                      | Description                                                                                                                     |
+| ------------------------------------------------- |---------------------------------------------------------------------------------------------------------------------------------|
+| `task.py`                                        | Initializes the bot and starts the scraping process.                                                                            |
+| `conda.yaml`                                    | Contains configuration settings to set up the environment and define RPA Framework dependencies.                                |
+| `robot.yaml`                                    | Includes configuration settings for Robocorp to execute `conda.yaml` and run `task.py`.                                         |
+| `Modules/nytimes/browser.py`                   | Contains all the methods related to browser functionality.                                                                      |
+| `Modules/nytimes/data_extractor.py`           | Provides a `run` method that calls other methods with logic for searching, scraping, and creating the Excel file for news data. |
+| `Modules/utils.py`                             | Includes a `ExcelGenerator` class will generate excel file that contains data.                                                  |
+| `Modules/nytimes/__init__.py`                | Contains code to generate logs.                                                                                                 |
 
 
 

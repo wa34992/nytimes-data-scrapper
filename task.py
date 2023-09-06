@@ -12,7 +12,7 @@ if __name__ == "__main__":
         work_item = work_items.get_work_item_payload()
         search_phrase = work_item["search_phrase"]
         news_category = work_item.get("news_category", [])
-        num_months = work_item.get("num_months", 2)
+        num_months = work_item.get("num_months", 3)
     else:
         # in case of development
         search_phrase = "python"
