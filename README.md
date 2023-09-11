@@ -37,6 +37,15 @@ To deploy the bot on the Robocorp Control Room, follow these steps:
 4. Run the process by providing the parameters mentioned above. The pramaters will be fetched from work items.
 5. Data and pictures will be scraped into the `output` directory.
 
+## Output
+
+After successful execution and process completion a directory with name Output will generate that have all the files.
+
+1. `app.log` file contains all the log generated during the process execution.
+2. `output.xlsx` file contains all the scrapped data in `data` tab (sheet) of workbook.
+3. `pictures` & `pictures.zip` directory contains all the images.
+
+
 ## File Structure
 
 | File/Folder                                      | Description                                                                                                                     |
