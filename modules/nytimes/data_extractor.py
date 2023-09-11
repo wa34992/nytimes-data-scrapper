@@ -81,11 +81,26 @@ class DataExtractor:
             date_element = article.find_element(By.TAG_NAME, "span")
             date_str = date_element.get_attribute("innerHTML")
             date = parser.parse(date_str).date()
-            description_element = article.find_element(By.CLASS_NAME, "css-16nhkrn")
-            description = description_element.get_attribute('innerText')
-            picture_element = article.find_element(By.TAG_NAME, "img")
-            picture_url = picture_element.get_attribute('src')
-            picture_filename = picture_url.split("/")[-1].split("?")[0]
+
+            """ There is the case that some of news don't have description. 
+            So handling exception if there is not description of article."""
+            try:
+                description_element = article.find_element(By.CLASS_NAME, "css-16nhkrn")
+                description = description_element.get_attribute('innerText')
+            except Exception as e:
+                logger.info(f"No description present for {title}")
+                description = "N/A"
+
+            """ There is the case that some of news don't have image. 
+            So handling exception if there is not any image of article."""
+            try:
+                picture_element = article.find_element(By.TAG_NAME, "img")
+                picture_url = picture_element.get_attribute('src')
+                picture_filename = picture_url.split("/")[-1].split("?")[0]
+            except Exception as e:
+                logger.info(f"No image present for {title}")
+                picture_filename = "not_found"
+
             search_phrase_count = sum(1 for _ in re.finditer(r'\b%s\b' % re.escape(search_phrase), title, re.IGNORECASE))
             search_phrase_count += sum(1 for _ in re.finditer(r'\b%s\b' % re.escape(search_phrase), description, re.IGNORECASE))
             money_in_title = bool(re.search(r'\$\d+(\.\d{2})?', title))
@@ -99,9 +114,10 @@ class DataExtractor:
                 "Money in Title or Money in Description": True if money_in_title and money_in_description else False,
             })
             try:
-                self.http_req.download(picture_url, f"output/pictures/{picture_filename}")
+                if picture_filename != "not_found":
+                    self.http_req.download(picture_url, f"output/pictures/{picture_filename}")
             except Exception as e:
                 error = traceback.format_exc()
                 logger.info(f"Image not found {error=}")
-        self.archive.archive_folder_with_tar('./output/pictures', 'output/pictures.tar', recursive=True)
+        self.archive.archive_folder_with_tar('./output/pictures', 'output/pictures.zip', recursive=True)
         self.excel_generator.write_to_excel(news_data)
