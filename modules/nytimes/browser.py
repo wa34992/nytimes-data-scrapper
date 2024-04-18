@@ -28,7 +28,7 @@ class NyTimesBrowser:
 
     # This method enter the provided keyword into search input
     def enter_search_phrase(self, search_phrase):
-        self.browser.screenshot(filename="search_page.png")
+        self.browser.screenshot(filename="output/search_page.png")
         self.browser.click_button('//button[@aria-controls="search-input"]')
         self.browser.input_text('//input[@data-testid="search-input"]', search_phrase)
         self.browser.press_keys('//input[@data-testid="search-input"]', "ENTER")
