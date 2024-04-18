@@ -32,8 +32,6 @@ class DataExtractor:
         start_date = end_date.replace(day=1).replace(month=date.today().month - (num_months - 1)).date()
         logger.info("Opening browser...")
         self.browser.open_browser(self.base_url)
-        logger.info("Handling terms modal...")
-        self.browser.close_terms_modal()
         logger.info(f"Entering {search_phrase=}...")
         self.browser.accept_cookies()
         self.browser.enter_search_phrase(search_phrase)
