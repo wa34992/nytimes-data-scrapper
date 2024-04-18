@@ -18,6 +18,11 @@ class NyTimesBrowser:
         web_element = self.browser.find_elements(path)
         return web_element
 
+    # This method closes term Modal that opens after page load
+    def close_terms_modal(self):
+        self.browser.wait_until_element_is_visible('//button[contains(text(), "Continue")]')
+        self.browser.click_button('//button[contains(text(), "Continue")]')
+
     def accept_cookies(self):
         try:
             self.browser.wait_until_element_is_visible('//button[@data-testid="GDPR-accept"]')
